@@ -12,7 +12,9 @@ https://sourceforge.net/projects/mpv-player-windows/files/64bit/
 Drag n' Drop blank.bgra, thumbgen.lua and thumbs.lua into your mpv\scripts folder.
 
 Blank.bgra - placeholder 'loading' thumbnail.
+
 thumbgen.lua - ffmpeg generator script. It uses mp.commandv("script-message-to") to pipe the stdout to thumbs.lua in a non-blocking manner.
+
 thumbs.lua - main viewer script which handles the input and general behaviour.
 
 # [Usage]

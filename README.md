@@ -5,4 +5,4 @@ mpv thumbnail generator script
 
 # [Known-Bugs]
 - no-keepaspect-window works but has issues at extreme scales.
-- cache=true is largly untested
+- cache=true is still wip

@@ -111,10 +111,10 @@ local function resized()
 		}
 	else
 		zRect = {
-			aY = ((osd_h * 94) / 100),
-			aY2 = ((osd_h * 1)/ 100),
-			bX = ((osd_w* 1) / 100),
-			bX2 = ((osd_w * 1) / 100)
+			aY = ((sh * 94) / 100),
+			aY2 = ((sh * 1)/ 100),
+			bX = ((sw* 1) / 100),
+			bX2 = ((sw * 1) / 100)
 		}
 
 	end

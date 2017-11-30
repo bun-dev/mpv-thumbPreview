@@ -1,12 +1,13 @@
 # mpv-thumbPreview
 mpv thumbnail generator script [windows]
+
 Generates thumbnail previews for mpv.
 
 ![Alt text](https://i.imgur.com/SGxtLps.png "Screenshot")
 
-Tested with shinchiro's compiled mpv only.
+Tested with shinchiro's compiled mpv only.[mpv]https://sourceforge.net/projects/mpv-player-windows/files/64bit/
+
 If compiling mpv, requires luajit module.
-https://sourceforge.net/projects/mpv-player-windows/files/64bit/
 
 # [Installation]
 Drag n' Drop blank.bgra, thumbgen.lua and thumbs.lua into your mpv\scripts folder.

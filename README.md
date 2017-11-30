@@ -8,6 +8,9 @@ Tested with shinchiro's compiled mpv only.
 If compiling mpv, requires luajit module.
 https://sourceforge.net/projects/mpv-player-windows/files/64bit/
 
+# [Installation]
+Drag n' Drop blank.bgra, thumbgen.lua and thumbs.lua into your mpv\scripts folder.
+
 # [Usage]
 
 By default the thumbnails should be generated anytime a video is shown. However this behaviour can be changed by editing the global variable inside thumbs.lua.
@@ -19,7 +22,7 @@ By default the thumbnails should be generated anytime a video is shown. However 
 	[timespan] --The amount of thumbs to be created. IE, every 20 seconds.
 	[minTime] --The minimum time needed in order to check for thumbs. We don't want thumbnails being created on files less than 5 minutes for example.
 	[auto] --If true, will automatically create thumbs everytime a video is open. If false, a key will have to be pressed to start the generation. True by default.
-	[cache] --If true, thumbs will be saved inside the 'thumbdir' so that they do not need to be created again. If false, thumbs will only persist in mpv's memory. False by default.
+	[cache] --If true, thumbs will be saved inside the 'thumbdir' so that they do not need to be created again. If false, thumbs will only persist in mpv's memory. If you set this to true, then you must change the default placeholder thumbdir var. False by default.
   
 
 # [Known-Bugs]

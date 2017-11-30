@@ -5,7 +5,7 @@ Generates thumbnail previews for mpv.
 
 ![Alt text](https://i.imgur.com/SGxtLps.png "Screenshot")
 
-Tested with shinchiro's compiled mpv only.[mpv]https://sourceforge.net/projects/mpv-player-windows/files/64bit/
+Tested with shinchiro's compiled mpv only.[!mpv]https://sourceforge.net/projects/mpv-player-windows/files/64bit/
 
 If compiling mpv, requires luajit module.
 

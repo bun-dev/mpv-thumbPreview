@@ -11,6 +11,10 @@ https://sourceforge.net/projects/mpv-player-windows/files/64bit/
 # [Installation]
 Drag n' Drop blank.bgra, thumbgen.lua and thumbs.lua into your mpv\scripts folder.
 
+# [Requirements]
+Updated MPV + ffmpeg.
+Please make sure the path to ffmpeg exists inside your PATH environment variables.IE, C:\ffmpeg\bin
+
 # [Info]
 Blank.bgra - placeholder 'loading' thumbnail.
 

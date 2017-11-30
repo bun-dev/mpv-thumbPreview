@@ -41,7 +41,8 @@ By default the thumbnails should be generated anytime a video is shown. However 
 - no-keepaspect-window works but has issues at extreme scales.
 - cache=true is still wip
 - Some videos with odd native resolutions break the mouse region. will be fixed next update
-
+- Doesn't support dragging new videos into the player yet.
+-
 # [ChangeLog]
 	0.1 - Initial release
 	0.2 - Mouse region improved.

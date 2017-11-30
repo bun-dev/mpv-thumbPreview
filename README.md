@@ -39,6 +39,7 @@ By default the thumbnails should be generated anytime a video is shown. However 
 # [Known-Bugs]
 - no-keepaspect-window works but has issues at extreme scales.
 - cache=true is still wip
+- Long duration videos(over 1 hour) has issues, will be fixed next update.
 
 # [ChangeLog]
 	0.1 - Initial release

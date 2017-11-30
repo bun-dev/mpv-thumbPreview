@@ -14,14 +14,8 @@
 		-thumbgen.lua (included)
 		-blank.bgra (included)
 		
-	[Usage]
-		Press 'k' to activate. Set 'auto' to true in _global for automatic activation. (thumbs will be generated every time a video is opened)
-		
 	[Cached Thumbnails]
 		To enable cached thumbs, set 'cache' in _global to true.
-		
-	[Remove thumbs] (Cache only)
-		TODO: If the video has been deleted, then the old thumbs will not work and thus deleted.
 		
 	Special thanks to various anons in https://boards.4chan.org/g/catalog#s=mpv
 --]]

@@ -1,5 +1,6 @@
 # mpv-thumbPreview
 mpv thumbnail generator script [windows]
+Generates thumbnail previews for mpv.
 
 ![Alt text](https://i.imgur.com/SGxtLps.png "Screenshot")
 
@@ -7,6 +8,27 @@ Tested with shinchiro's compiled mpv only.
 If compiling mpv, requires luajit module.
 https://sourceforge.net/projects/mpv-player-windows/files/64bit/
 
+# [Usage]
+
+By default the thumbnails should be generated anytime a video is shown. However this behaviour can be changed by editing the global variable inside thumbs.lua.
+
+	[thumbdir]  --The global thumbnail folder. [Only if cache is set to true]
+	[thumb_width]  --thumbnail width. Aspect ratio automatically applied.
+	[offset_from_seekbar] --The offset y from the seekbar.
+	[y_offset] --Thumbnail y-pos offset.
+	[timespan] --The amount of thumbs to be created. IE, every 20 seconds.
+	[minTime] --The minimum time needed in order to check for thumbs. We don't want thumbnails being created on files less than 5 minutes for example.
+	[auto] --If true, will automatically create thumbs everytime a video is open. If false, a key will have to be pressed to start the generation. True by default.
+	[cache] --If true, thumbs will be saved inside the 'thumbdir' so that they do not need to be created again. If false, thumbs will only persist in mpv's memory. False by default.
+  
+
 # [Known-Bugs]
 - no-keepaspect-window works but has issues at extreme scales.
 - cache=true is still wip
+
+# [ChangeLog]
+	0.1 - Initial release
+	0.2 - Mouse region improved.
+	0.3 - Mouse region adjusted for no-keepaspect-window.
+ 
+

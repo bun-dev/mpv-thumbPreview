@@ -58,7 +58,7 @@ local function generate(timespan, input, size,maxThumbs)
 
 		if curtime > (maxThumbs-timespan) then
 			local stop = mp.get_time()
-			mp.msg.debug("All thumbs created in " .. stop-start .. " seconds")
+			mp.msg.debug(i+1 .. " thumbs created in " .. stop-start .. " seconds")
 			mp.unregister_script_message("generate")
 			thumbs = {}
 			return
@@ -127,7 +127,7 @@ local function generateLocal(...)
 			
 			if curtime > (maxThumbs-timespan) then
 				local stop = mp.get_time()
-				mp.msg.debug("All thumbs created in " .. stop-start .. " seconds")
+				mp.msg.debug(i+1 .. " thumbs created in " .. stop-start .. " seconds")
 				mp.unregister_script_message("generateLocal")
 				return
 			end	

@@ -30,17 +30,17 @@ local msg = require 'mp.msg'
 local utils = require "mp.utils"
 local options = require "mp.options"
 
---	variables which can be modified.
 local _global = {
-	thumbdir = "D:\\\\mpv\\\\cache\\\\", --The global thumbnail folder. [Only if cache is set to true]
-	thumb_width = 150, --thumbnail width. aspect ratio automatically applied.
-	offset_from_seekbar = 120, --The offset y from the seekbar.
-	y_offset = 0, --Thumbnail y-pos offset.
-	timespan = 20, --The amount of thumbs to be created. IE, every 30 seconds.
-	minTime = 300, -- The minimum time needed in order to check for thumbs. We don't want thumbnails being created on files less than 5 minutes for example.
-	auto = true, -- If true, will automatically create thumbs everytime a video is open. If false, a key will have to be pressed to start the generation.
-	cache = false -- If true, thumbs will be saved inside the 'thumbdir' so that they do not need to be created again. If false, thumbs will only persist in mpv's memory.
+	thumbdir="",
+	thumb_width=0,
+	offset_from_seekbar=0,
+	y_offset=0,
+	timespan=0,
+	minTime=0,
+	auto=false,
+	cache=false
 }
+
 options.read_options(_global)
 
 local vid_w,vid_h = 0

@@ -10,7 +10,7 @@ Tested with shinchiro's compiled mpv only.[mpv](https://sourceforge.net/projects
 If compiling mpv, requires luajit module.
 
 # [Installation]
-Drag n' Drop blank.bgra, thumbgen.lua and thumbs.lua into your mpv\scripts folder.
+Clone or download the repo and extract to ~/mpv installation folder.
 
 # [Requirements]
 Updated MPV + ffmpeg.
@@ -47,5 +47,5 @@ By default the thumbnails should be generated anytime a video is shown. However 
 	0.1 - Initial release
 	0.2 - Mouse region improved.
 	0.3 - Mouse region adjusted for no-keepaspect-window.
- 
+ 	0.4 - Using built-in mpv ffmpeg. Global settings now applied from thumbs.conf. Timer added for thumb generation
 

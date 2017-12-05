@@ -35,6 +35,7 @@ local function generate(timespan, input, size,maxThumbs)
 		"-"
 	}
 
+	local start = mp.get_time()
 	for i=0, maxThumbs do
 		curtime=(i*timespan)
 		command.args[5] = curtime
@@ -56,7 +57,8 @@ local function generate(timespan, input, size,maxThumbs)
 		mp.commandv("script-message-to", "thumbs", "add_thumb", i, thumbs.addr[i])
 
 		if curtime > (maxThumbs-timespan) then
-			mp.msg.debug("All thumbs created")
+			local stop = mp.get_time()
+			mp.msg.debug(i+1 .. " thumbs created in " .. stop-start .. " seconds")
 			mp.unregister_script_message("generate")
 			thumbs = {}
 			return
@@ -106,8 +108,8 @@ local function generateLocal(...)
 		init = true
 	end
 
-	
 	if init then
+		local start = mp.get_time()
 		for i=0, maxThumbs do
 			curtime=(i*timespan)
 			command.args[5] = curtime
@@ -124,7 +126,8 @@ local function generateLocal(...)
 			
 			
 			if curtime > (maxThumbs-timespan) then
-				mp.msg.debug("All thumbs created")
+				local stop = mp.get_time()
+				mp.msg.debug(i+1 .. " thumbs created in " .. stop-start .. " seconds")
 				mp.unregister_script_message("generateLocal")
 				return
 			end	

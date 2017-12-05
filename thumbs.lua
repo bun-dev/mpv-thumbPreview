@@ -41,6 +41,7 @@ local _global = {
 	auto = true, -- If true, will automatically create thumbs everytime a video is open. If false, a key will have to be pressed to start the generation.
 	cache = false -- If true, thumbs will be saved inside the 'thumbdir' so that they do not need to be created again. If false, thumbs will only persist in mpv's memory.
 }
+options.read_options(_global)
 
 options.read_options(_global)
 

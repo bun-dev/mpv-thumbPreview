@@ -25,7 +25,7 @@ thumbs.lua - main viewer script which handles the input and general behaviour.
 
 # [Usage]
 
-By default the thumbnails should be generated anytime a video is shown. However this behaviour can be changed by editing the global variable inside thumbs.lua.
+By default the thumbnails should be generated anytime a video is shown. However this behaviour can be changed by editing the global variable inside thumbs.lua or by setting them in `lua-settings\thumbs.conf` in your mpv user folder.
 
 	[thumbdir]  --The global thumbnail folder. [Only if cache is set to true]
 	[thumb_width]  --thumbnail width. Aspect ratio automatically applied.

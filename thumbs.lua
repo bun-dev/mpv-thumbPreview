@@ -14,14 +14,21 @@
 		-thumbgen.lua (included)
 		-blank.bgra (included)
 		
+	[Usage]
+		Press 'k' to activate. Set 'auto' to true in _global for automatic activation. (thumbs will be generated every time a video is opened)
+		
 	[Cached Thumbnails]
 		To enable cached thumbs, set 'cache' in _global to true.
+		
+	[Remove thumbs] (Cache only)
+		TODO: If the video has been deleted, then the old thumbs will not work and thus deleted.
 		
 	Special thanks to various anons in https://boards.4chan.org/g/catalog#s=mpv
 --]]
 
 local msg = require 'mp.msg'
 local utils = require "mp.utils"
+local options = require "mp.options"
 
 --	variables which can be modified.
 local _global = {
@@ -34,6 +41,8 @@ local _global = {
 	auto = true, -- If true, will automatically create thumbs everytime a video is open. If false, a key will have to be pressed to start the generation.
 	cache = false -- If true, thumbs will be saved inside the 'thumbdir' so that they do not need to be created again. If false, thumbs will only persist in mpv's memory.
 }
+
+options.read_options(_global)
 
 local vid_w,vid_h = 0
 local osd_w,osd_h = 0
@@ -70,7 +79,6 @@ end
 
 -- modified from https://github.com/occivink/mpv-scripts/blob/master/drag-to-pan.lua
 local function compute_video_dimensions()
-
     local video_params = mp.get_property_native("video-out-params")
     local h = video_params["h"]
     local dw = video_params["dw"]
@@ -96,7 +104,6 @@ local function compute_video_dimensions()
 end
 
 local function resized()
-
 	oldSize.x,oldSize.y = osd_w,osd_h
 	compute_video_dimensions()
 	local osc = tostring(mp.get_property("osc"))
@@ -111,10 +118,10 @@ local function resized()
 		}
 	else
 		zRect = {
-			aY = ((sh * 94) / 100),
-			aY2 = ((sh * 1)/ 100),
-			bX = ((sw* 1) / 100),
-			bX2 = ((sw * 1) / 100)
+			aY = ((osd_h * 94) / 100),
+			aY2 = ((osd_h * 1)/ 100),
+			bX = ((osd_w* 1) / 100),
+			bX2 = ((osd_w * 1) / 100)
 		}
 
 	end
@@ -131,7 +138,7 @@ local function zone(p)
     return y, x
 end
 
-local function on_seek()	
+local function on_seek()
 	--	init2 is set true when the thumbs creation has been started. we don't want these calculations being performed needlessly, unless caching is enabled.
 	if init2 or _global.cache then 
 		osd_w,osd_h = mp.get_osd_size()
@@ -145,7 +152,7 @@ local function on_seek()
 			resized()
 			
 			--calculate thumb_height based on given width.				
-			thumb_height = math.floor(_global.thumb_width/ (vid_w/vid_h))	
+			thumb_height = math.floor(_global.thumb_width/ (vid_w/vid_h))
 		end
 	
 		--calculate new sizes when resized.
@@ -194,21 +201,20 @@ end
  
  local function createThumbs()
 
-	local size = "scale=$thumbwidth:-1"
-	size = size:gsub("$thumbwidth", _global.thumb_width)	
+	local size = "lavfi=[scale=$thumbwidth:-1]"
+	size = size:gsub("$thumbwidth", _global.thumb_width)
 	init2 = true
 	
 	if not _global.cache then
 		mp.msg.debug("Generating thumbnails dynamically")
 		mp.commandv("script-message-to", "thumbgen", "generate",_global.timespan, input, size,duration)
 	else
-		mp.msg.debug("Generating thumbnails locally")	
+		mp.msg.debug("Generating thumbnails locally")
 		mp.commandv("script-message-to", "thumbgen", "generateLocal",_global.timespan, input, size,duration,outpath,regen)
 	end
 end
 
-local function checkThumbs()	
-
+local function checkThumbs()
 	if duration < _global.minTime then
 		if not _global.auto then
 			osd("Video duration less than ".. tostring(_global.minTime) .. " seconds. Cancelled")
@@ -221,6 +227,7 @@ local function checkThumbs()
 		command.args = {
 			"cd",outpath
 		}
+		
 		local response = utils.subprocess(command)
 		
 		if response.status ~= 0 then
@@ -258,7 +265,7 @@ local function addBinding()
 	mp.add_forced_key_binding("y", "save", regenThumb)
 	mp.add_forced_key_binding("Y", "save2", regenThumb)
 	mp.add_forced_key_binding("n", "unsave", unsave)
-	mp.add_forced_key_binding("N", "unsave2", unsave)	
+	mp.add_forced_key_binding("N", "unsave2", unsave)
 end
 
 --	Temporarily force n as a keybinding for confirmation.
@@ -270,7 +277,7 @@ local function removeBinding()
 end
 
 local function unregister()
-	mp.msg.debug("mpv thumbs unregistered")	
+	mp.msg.debug("mpv thumbs unregistered")
 	init = false
 	init2 = false
 	mp.remove_key_binding("checkThumbs")
@@ -284,10 +291,10 @@ check = function()
 	mp.unregister_event(check)
 	
 	--check if valid format for making previews
-	local validlist = '.avi|.divx|flv|.mkv|.mov|.mp4|.mpeg|.mpg|.rm|.rmvb|.ts|.vob|.webm|.wmv'
+	local validlist = '.avi|.divx|flv|.mkv|.mov|.mp4|.mpeg|.mpg|.rm|.rmvb|.ts|.vob|.webm|.wmv|.m2ts'
 	local ext = GetFileExtension(mp.get_property("filename"))
 	
-	mpath = script_path() 
+	mpath = script_path()
 	mpath=mpath:gsub([[/]],[[\\]])
 	
 	--if the video isn't in the valid list, then it's ignored.
@@ -313,13 +320,12 @@ check = function()
 		local cmd = {}
 
 		cmd.args = {
-			"ffmpeg",
-			"-loglevel","quiet",	
-			"-i", input,
-			"-frames:v","1",
-			"-t", "0.1",
-			"-f", "md5",
-			"-"
+			"mpv",
+			"--msg-level","all=no",	
+			input,
+			"--frames","1",
+			"--of", "md5",
+			"--o=-"
 		}
 
 		local process = utils.subprocess(cmd)

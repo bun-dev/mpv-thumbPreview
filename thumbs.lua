@@ -43,8 +43,6 @@ local _global = {
 }
 options.read_options(_global)
 
-options.read_options(_global)
-
 local vid_w,vid_h = 0
 local osd_w,osd_h = 0
 local input,outpath = ""

@@ -1,29 +1,6 @@
 --[[
     MPV Thumbnail Preview
-    Version: 0.3
-	
-	Changes:
-	0.1 - Initial release
-	0.2 - Mouse region improved.
-	0.3 - Mouse region adjusted for no-keepaspect-window.
-	
-	Generates preview thumbnails for mpv either locally or dynamically using overlay-add.
-	
-	[Requirements]
-		-ffmpeg ( not included. Please make sure ffmpeg is included in your PATH environment vars. IE, D:\ffmpeg\bin)
-		-thumbgen.lua (included)
-		-blank.bgra (included)
-		
-	[Usage]
-		Press 'k' to activate. Set 'auto' to true in _global for automatic activation. (thumbs will be generated every time a video is opened)
-		
-	[Cached Thumbnails]
-		To enable cached thumbs, set 'cache' in _global to true.
-		
-	[Remove thumbs] (Cache only)
-		TODO: If the video has been deleted, then the old thumbs will not work and thus deleted.
-		
-	Special thanks to various anons in https://boards.4chan.org/g/catalog#s=mpv
+    Version: 0.4
 --]]
 
 local msg = require 'mp.msg'

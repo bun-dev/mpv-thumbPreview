@@ -12,10 +12,6 @@ If compiling mpv, requires luajit module.
 # [Installation]
 Clone or download the repo and extract to ~/mpv installation folder.
 
-# [Requirements]
-Updated MPV + ffmpeg.
-Please make sure the path to ffmpeg exists inside your PATH environment variables.IE, C:\ffmpeg\bin
-
 # [Info]
 Blank.bgra - placeholder 'loading' thumbnail.
 
@@ -48,4 +44,3 @@ By default the thumbnails should be generated anytime a video is shown. However 
 	0.2 - Mouse region improved.
 	0.3 - Mouse region adjusted for no-keepaspect-window.
  	0.4 - Using built-in mpv ffmpeg. Global settings now applied from thumbs.conf. Timer added for thumb generation
-
